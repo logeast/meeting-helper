@@ -61,6 +61,23 @@ export const isTitle = (value) => {
   return { flag, targetItem };
 };
 
+export const isListItem = (value) => {
+  const orderList = ["-", "*", "·"];
+  let flag = false;
+  let targetItem = "";
+  orderList.map((item) => {
+    if (value.slice(0, 4).indexOf(item) > -1) {
+      flag = true;
+      targetItem = item;
+    }
+    return {
+      isListItem: flag,
+      vlaue: value
+    };
+  });
+  return { flag, targetItem };
+};
+
 export const isUrl = (str) => {
   const urlRegExp = /^(https?|chrome):\/\/[^\s$.?#].[^\s]*$/;
   return urlRegExp.test(str);
@@ -93,7 +110,8 @@ export const addTag = (arr = []) => {
   arr.forEach((item) => {
     const itemObj = {
       title: "",
-      url: ""
+      url: "",
+      items: []
     };
     if (Array.isArray(item)) {
       item.forEach((subItem) => {
@@ -103,11 +121,16 @@ export const addTag = (arr = []) => {
             .trim();
         } else if (isUrl(subItem.trim())) {
           itemObj.url = subItem;
+        } else if (isListItem(subItem).flag) {
+          itemObj.items.push(
+            subItem.replace(isListItem(subItem).targetItem, "").trim()
+          );
         }
       });
     }
     result.push(itemObj);
   });
+  console.log(result);
   return result;
 };
 
@@ -115,7 +138,9 @@ export const categoreLinks = (url) => {
   const linkMap = new Map([
     ["figma", "Figma"],
     ["tapd", "TAPD"],
-    ["web/spear/", "重构稿"]
+    ["web/spear/", "重构稿"],
+    ["onedesign", "One Design"],
+    ["web/odc", "ODC"]
   ]);
   let result = "链接";
   linkMap.forEach((value, key) => {
@@ -125,3 +150,5 @@ export const categoreLinks = (url) => {
   });
   return result;
 };
+
+export const fmtVal = (val) => addTag(formatArr(splitStr(val)));

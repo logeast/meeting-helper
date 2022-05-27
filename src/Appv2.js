@@ -1,6 +1,5 @@
 import React, { useState, useReducer, createContext, useContext } from "react";
-import { addTag, splitStr, formatArr, categoreLinks } from "./utils";
-const fmtVal = (val) => addTag(formatArr(splitStr(val)));
+import { categoreLinks, fmtVal } from "./utils";
 
 const usersArr = [
   // ["Schedule", "基本信息", "#CED3DA"],
@@ -115,12 +114,24 @@ function FormatAreaInner(props) {
       <ul style={{ paddingLeft: 20 }}>
         {data.map((item, index) => {
           return (
-            <li key={index}>
-              <p className="paragraph text-align-type-left pap-line-1 pap-line-rule-auto pap-spacing-before-3pt pap-spacing-after-3pt pap-left-indent-2em pap-hanging-indent-1.6em">
-                <span>{item.title}</span>{" "}
-                {item.url && <a href={item.url}>{categoreLinks(item.url)}</a>}
-              </p>
-            </li>
+            <>
+              <li key={index}>
+                <p className="paragraph text-align-type-left pap-line-1 pap-line-rule-auto pap-spacing-before-3pt pap-spacing-after-3pt pap-left-indent-2em pap-hanging-indent-1.6em">
+                  <span>{item.title}</span>{" "}
+                  {item.url && <a href={item.url}>{categoreLinks(item.url)}</a>}
+                </p>
+              </li>
+              <ul style={{ paddingLeft: 60 }}>
+                {Array.isArray(item?.items) &&
+                  item.items.map((subitem, index) => (
+                    <li key={index}>
+                      <p className="paragraph text-align-type-left pap-line-1.3 pap-line-rule-auto pap-spacing-before-3pt pap-spacing-after-3pt pap-left-indent-4em pap-hanging-indent-1.6em">
+                        {subitem}
+                      </p>
+                    </li>
+                  ))}
+              </ul>
+            </>
           );
         })}
       </ul>
