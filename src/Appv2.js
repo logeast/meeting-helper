@@ -111,17 +111,17 @@ function FormatAreaInner(props) {
           {nickname}({user})
         </h4>
       )}
-      <ul style={{ paddingLeft: 20 }}>
+      <ul style={{ paddingLeft: 20, fontSize: "11pt" }}>
         {data.map((item, index) => {
           return (
             <>
               <li key={index}>
-                <p className="paragraph text-align-type-left pap-line-1 pap-line-rule-auto pap-spacing-before-3pt pap-spacing-after-3pt pap-left-indent-2em pap-hanging-indent-1.6em">
+                <p className="paragraph text-align-type-left pap-line-1.3 pap-line-rule-auto pap-spacing-before-3pt pap-spacing-after-3pt pap-left-indent-2em pap-hanging-indent-1.6em">
                   <span>{item.title}</span>{" "}
                   {item.url && <a href={item.url}>{categoreLinks(item.url)}</a>}
                 </p>
               </li>
-              <ul style={{ paddingLeft: 60 }}>
+              <ul style={{ paddingLeft: 48 }}>
                 {Array.isArray(item?.items) &&
                   item.items.map((subitem, index) => (
                     <li key={index}>
