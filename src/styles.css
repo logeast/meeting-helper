@@ -1,0 +1,70 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  margin: 0 20px;
+  padding: 0;
+  background: url(./bg.svg);
+}
+/* 助手样式 */
+.wk {
+}
+.wk-v {
+  border: 2px solid rgba(41, 107, 239, 0.4);
+}
+.wk-v:focus-within {
+  border-color: rgba(41, 107, 239);
+}
+.input-area {
+}
+.format-area {
+}
+.user-section:focus-within {
+  outline: 2px solid #296bef;
+}
+.user-section textarea::placeholder {
+  color: rgba(0, 0, 0, 0.3);
+}
+.user-section .xxr {
+  outline: none;
+  border-top: 1px solid red;
+}
+
+/* 格式化为最终样式 */
+.xxr {
+}
+.xxr > h4 {
+  line-height: 1.7;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.xxr > ul > li {
+  font-size: 11pt;
+  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Microsoft YaHei",
+    "Source Han Sans SC", "Noto Sans CJK SC", "WenQuanYi Micro Hei", sans-serif;
+  letter-spacing: 0pt;
+  vertical-align: baseline;
+  margin-left: 2em;
+  padding-left: 0em;
+}
+
+.xxr > ul > li > p {
+  line-height: 1;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.xxr > ul > li > p > span {
+  font-size: 11pt;
+  background-image: initial;
+  background-position: initial;
+  background-size: initial;
+  background-repeat: initial;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  letter-spacing: 0pt;
+  vertical-align: baseline;
+}
