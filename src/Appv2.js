@@ -7,6 +7,7 @@ const usersArr = [
   ["arryliu", "超哥", "#FFEA79"],
   ["quinceywang", "小希", "#FFBDAE"],
   ["haiyingzhao", "海莹", "#B1D0FF"],
+  ["yanqinghu", "阿庆", "#A5B4FC"],
   ["dovechen", "鸽子哥", "#EABFFF"],
   ["lacqlu", "向东", "#EAC287"]
   // ["Vitamin", "维他命", "#CED3DA"],
