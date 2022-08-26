@@ -5,9 +5,10 @@ const usersArr = [
   // ["Schedule", "基本信息", "#CED3DA"],
   ["chihyunli", "知芸", "#93E396"],
   ["arryliu", "超哥", "#FFEA79"],
+  ["yanqinghu", "庆", "#A5B4FC"],
+  ["dingdingma", "丁丁", "#FFC880"],
   ["quinceywang", "小希", "#FFBDAE"],
   ["haiyingzhao", "海莹", "#B1D0FF"],
-  ["yanqinghu", "阿庆", "#A5B4FC"],
   ["dovechen", "鸽子哥", "#EABFFF"],
   ["lacqlu", "向东", "#EAC287"]
   // ["Vitamin", "维他命", "#CED3DA"],
