@@ -260,9 +260,9 @@ function Viewer() {
         style={{
           height: "100%",
           outline: "none",
-          padding: "16px",
-          boxShadow:
-            "0px 3px 5px rgba(0, 0, 0, 0.08), 0px 6px 15px rgba(0, 0, 0, 0.08)"
+          padding: "16px"
+          // boxShadow:
+          //   "0px 3px 5px rgba(0, 0, 0, 0.08), 0px 6px 15px rgba(0, 0, 0, 0.08)"
         }}
         contentEditable
         suppressContentEditableWarning
