@@ -1,15 +1,23 @@
-import React, { useState, useReducer, createContext, useContext } from "react";
+import React, {
+  useState,
+  useReducer,
+  createContext,
+  useContext,
+  useRef,
+  useEffect
+} from "react";
 import { categoreLinks, fmtVal } from "./utils";
+import IconQuestion from "./IconQuestion";
 
 const usersArr = [
-  // ["Schedule", "基本信息", "#CED3DA"],
+  // ["example", "示例", "#93E396"],
   ["chihyunli", "知芸", "#93E396"],
-  ["arryliu", "超哥", "#FFEA79"],
+  ["arryliu", "超哥", "#EABFFF"],
   ["yanqinghu", "庆", "#A5B4FC"],
   ["dingdingma", "丁丁", "#FFC880"],
   ["quinceywang", "小希", "#FFBDAE"],
   ["haiyingzhao", "海莹", "#B1D0FF"],
-  ["dovechen", "鸽子哥", "#EABFFF"],
+  ["dovechen", "鸽子哥", "#FFEA79"],
   ["lacqlu", "向东", "#EAC287"]
   // ["Vitamin", "维他命", "#CED3DA"],
 ];
@@ -301,10 +309,8 @@ function Viewer() {
 function Header() {
   const [, dispatch] = useContext(UsersContext);
 
-  const [open, setOpen] = useState(false);
-
   const onClear = () => {
-    if (window.confirm("确认清空所有内容吗？")) {
+    if (window.confirm("🍒 将清空所有内容，请再次确认🤔")) {
       localStorage.clear();
       dispatch({
         type: "clearUsersData"
@@ -312,26 +318,20 @@ function Header() {
     }
   };
 
-  const onCancel = () => {
-    setOpen(false);
-  };
-  const onConfirm = () => {
-    setOpen(false);
-    localStorage.clear();
-    dispatch({
-      type: "clearUsersData"
-    });
-  };
-
   return (
     <div
+      className="flex"
       style={{
         display: "flex",
         justifyContent: "space-between",
-        alignItems: "center"
+        alignItems: "center",
+        marginBottom: "8px"
       }}
     >
-      <h1 style={{ flex: "none", margin: "0 0 8px" }}>会议纪要助手</h1>
+      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+        <h1 style={{ flex: "none", margin: "0" }}>会议纪要助手</h1>
+        <HelpTips />
+      </div>
       <div>
         <span style={{ cursor: "pointer", color: "#296bef" }} onClick={onClear}>
           一键清空
@@ -345,16 +345,48 @@ function Dialog(props) {
   const { open, children, onCancel, onConfirm } = props;
 
   return (
-    <dialog open={open}>
-      <div>{children}</div>
-      <div>
-        <button onClick={onCancel}>取消</button>
-        <button onClick={onConfirm}>确认</button>
-      </div>
-    </dialog>
+    <div>
+      <dialog open={open}>
+        <div>{children}</div>
+        <div>
+          <button onClick={onCancel}>取消</button>
+          <button onClick={onConfirm}>确认</button>
+        </div>
+      </dialog>
+    </div>
   );
 }
+function HelpTips(props) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
 
+  useEffect(() => {
+    if (ref && ref.current) {
+      ref.current.addEventListener("mouseenter", () => {
+        setOpen(true);
+      });
+      ref.current.addEventListener("mouseleave", () => {
+        setOpen(false);
+      });
+    }
+  });
+
+  return (
+    <div ref={ref} style={{ cursor: "pointer" }} onClick={() => setOpen(true)}>
+      <IconQuestion />
+      <dialog open={open} style={{ borderRadius: 8, background: "#f7f9fc" }}>
+        <h4 style={{ margin: "0 0 8px 0" }}>输入/输出格式</h4>
+        <img
+          src="https://qzonestyle.gdtimg.com/gdt_ui_proj/imghub/dist/meeting-helper-sample.png?max_age=31536000"
+          width={781}
+          height={419}
+          alt=""
+          style={{ marginBottom: -12 }}
+        />
+      </dialog>
+    </div>
+  );
+}
 function Appv2() {
   return (
     <div
