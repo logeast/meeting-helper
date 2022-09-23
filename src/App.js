@@ -50,6 +50,11 @@ const reducer = (state, action) => {
         ...state,
         usersData: action.usersData
       };
+    case "clearUsersData":
+      return {
+        ...state,
+        usersData: initialState.usersData
+      };
     default:
       return state;
   }
@@ -146,11 +151,12 @@ function UserSection(props) {
   const { user, nickname, color } = props;
   const lsname = `user_${user}`;
 
-  const [value, setValue] = useState(getUserStorage(user) || "");
+  // const [value1, setValue] = useState(getUserStorage(user) || "");
   const [state, dispatch] = useContext(UsersContext);
 
   const onChange = (e) => {
-    setValue(e.target.value);
+    console.log(" state.usersData", state.usersData);
+    // setValue(e.target.value);
     dispatch({
       type: "usersData",
       usersData: state.usersData.map((item) =>
@@ -158,6 +164,8 @@ function UserSection(props) {
       )
     });
   };
+
+  const value = state.usersData.find((element) => element.user === user).value;
 
   const onBlur = (e) => {
     localStorage.setItem(lsname, e.target.value);
@@ -289,7 +297,65 @@ function Viewer() {
   );
 }
 
-const Appv2 = () => {
+/** 标题组件 */
+function Header() {
+  const [, dispatch] = useContext(UsersContext);
+
+  const [open, setOpen] = useState(false);
+
+  const onClear = () => {
+    if (window.confirm("确认清空所有内容吗？")) {
+      localStorage.clear();
+      dispatch({
+        type: "clearUsersData"
+      });
+    }
+  };
+
+  const onCancel = () => {
+    setOpen(false);
+  };
+  const onConfirm = () => {
+    setOpen(false);
+    localStorage.clear();
+    dispatch({
+      type: "clearUsersData"
+    });
+  };
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center"
+      }}
+    >
+      <h1 style={{ flex: "none", margin: "0 0 8px" }}>会议纪要助手</h1>
+      <div>
+        <span style={{ cursor: "pointer", color: "#296bef" }} onClick={onClear}>
+          一键清空
+        </span>
+      </div>
+    </div>
+  );
+}
+
+function Dialog(props) {
+  const { open, children, onCancel, onConfirm } = props;
+
+  return (
+    <dialog open={open}>
+      <div>{children}</div>
+      <div>
+        <button onClick={onCancel}>取消</button>
+        <button onClick={onConfirm}>确认</button>
+      </div>
+    </dialog>
+  );
+}
+
+function Appv2() {
   return (
     <div
       style={{
@@ -300,23 +366,23 @@ const Appv2 = () => {
         maxHeight: "calc(100vh - 40px)"
       }}
     >
-      <h1 style={{ flex: "none" }}>会议纪要助手</h1>
-      <div
-        className="wk"
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(2, 1fr)",
-          gap: 24,
-          flex: 1,
-          overflow: "hidden"
-        }}
-      >
-        <UsersProvider>
+      <UsersProvider>
+        <Header />
+        <div
+          className="wk"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(2, 1fr)",
+            gap: 24,
+            flex: 1,
+            overflow: "hidden"
+          }}
+        >
           <Editor />
           <Viewer />
-        </UsersProvider>
-      </div>
+        </div>
+      </UsersProvider>
     </div>
   );
-};
+}
 export default Appv2;
