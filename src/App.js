@@ -8,31 +8,20 @@ import React, {
 } from "react";
 import { categoreLinks, fmtVal } from "./utils";
 import IconQuestion from "./IconQuestion";
+import LuckyFlower from "./LuckyFlower";
+import usersArrObj from "./datas";
 
-const usersArr = [
-  // ["example", "示例", "#93E396"],
-  ["chihyunli", "知芸", "#93E396"],
-  ["arryliu", "超哥", "#EABFFF"],
-  ["yanqinghu", "庆", "#A5B4FC"],
-  ["dingdingma", "丁丁", "#FFC880"],
-  ["quinceywang", "小希", "#FFBDAE"],
-  ["haiyingzhao", "海莹", "#B1D0FF"],
-  ["dovechen", "鸽子哥", "#FFEA79"],
-  ["lacqlu", "向东", "#EAC287"]
-  // ["Vitamin", "维他命", "#CED3DA"],
-];
+// const getUserStorage = (user) => {
+//   const lsname = `user_${user}`;
+//   return localStorage.getItem(lsname);
+// };
 
-const getUserStorage = (user) => {
-  const lsname = `user_${user}`;
-  return localStorage.getItem(lsname);
-};
-
-const usersArrObj = Array.from(usersArr, ([user, nickname, color]) => ({
-  user,
-  nickname,
-  color,
-  value: getUserStorage(user) || ""
-}));
+// const usersArrObj = Array.from(usersArr, ([user, nickname, color]) => ({
+//   user,
+//   nickname,
+//   color,
+//   value: getUserStorage(user) || ""
+// }));
 
 const initialState = {
   usersData: usersArrObj || []
@@ -329,38 +318,37 @@ function Header() {
       }}
     >
       <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-        <h1 style={{ flex: "none", margin: "0" }}>会议纪要助手</h1>
+        <h1 style={{ flex: "none", margin: "0" }}>会议助手</h1>
         <HelpTips />
       </div>
-      <div>
-        <span style={{ cursor: "pointer", color: "#296bef" }} onClick={onClear}>
+      <div style={{ display: "flex" }}>
+        <LuckyFlower />
+        <button
+          style={{
+            background: "transparent",
+            border: "none",
+            cursor: "pointer",
+            color: "#296bef"
+          }}
+          onClick={onClear}
+        >
           一键清空
-        </span>
+        </button>
       </div>
     </div>
   );
 }
 
-function Dialog(props) {
-  const { open, children, onCancel, onConfirm } = props;
-
-  return (
-    <div>
-      <dialog open={open}>
-        <div>{children}</div>
-        <div>
-          <button onClick={onCancel}>取消</button>
-          <button onClick={onConfirm}>确认</button>
-        </div>
-      </dialog>
-    </div>
-  );
-}
 function HelpTips(props) {
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
 
   useEffect(() => {
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+      }
+    });
     if (ref && ref.current) {
       ref.current.addEventListener("mouseenter", () => {
         setOpen(true);
@@ -372,9 +360,32 @@ function HelpTips(props) {
   });
 
   return (
-    <div ref={ref} style={{ cursor: "pointer" }} onClick={() => setOpen(true)}>
-      <IconQuestion />
-      <dialog open={open} style={{ borderRadius: 8, background: "#f7f9fc" }}>
+    <div
+      ref={ref}
+      style={{ cursor: "pointer", position: "relative" }}
+      onClick={() => setOpen(true)}
+    >
+      <button
+        style={{
+          padding: 0,
+          border: "none",
+          background: "transparent",
+          display: "flex",
+          borderRadius: "100%",
+          cursor: "pointer"
+        }}
+      >
+        <IconQuestion />
+      </button>
+      <dialog
+        open={open}
+        style={{
+          borderRadius: 8,
+          background: "#fff",
+          zIndex: 1000
+          // marginTop: "8px"
+        }}
+      >
         <h4 style={{ margin: "0 0 8px 0" }}>输入/输出格式</h4>
         <img
           src="https://qzonestyle.gdtimg.com/gdt_ui_proj/imghub/dist/meeting-helper-sample.png?max_age=31536000"

@@ -32,7 +32,7 @@ body {
 }
 .user-section .xxr {
   outline: none;
-  border-top: 1px solid red;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 /* 格式化为最终样式 */
@@ -78,4 +78,91 @@ body {
   line-height: 1.3;
   margin-top: 4px;
   margin-bottom: 4px;
+}
+
+/* 头像样式 */
+@property --rotate {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+.lucky-avatar {
+  margin: 0 auto;
+  animation: scale 3s linear 0s infinite alternate;
+  border-radius: 100px;
+  background: #191c29;
+  width: 96px;
+  height: 96px;
+  position: relative;
+  border-radius: 600px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  color: rgb(88 199 250 / 0%);
+  cursor: pointer;
+}
+
+.lucky-avatar::before {
+  content: "";
+  width: 104%;
+  height: 104%;
+  border-radius: 100px;
+
+  background-image: linear-gradient(var(--rotate), #abdcff 10%, #0396ff 100%);
+  position: absolute;
+  z-index: -1;
+  top: -2%;
+  left: -2%;
+  animation: spin 5s linear infinite;
+}
+
+.lucky-avatar.selcted::after {
+  position: absolute;
+  content: "";
+  top: -20%;
+  left: -20%;
+  right: 0;
+  z-index: -1;
+  height: 140%;
+  width: 140%;
+  border-radius: 800px;
+  margin: 0 auto;
+  transform: scale(0.8);
+  filter: blur(calc(var(--card-height) / 6));
+  filter: blur(28px);
+  background-image: linear-gradient(
+    var(--rotate),
+    #5ddcff,
+    #3c67e3 43%,
+    #4e00c2
+  );
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+
+@keyframes spin {
+  0% {
+    --rotate: 0deg;
+  }
+  100% {
+    --rotate: 360deg;
+  }
+}
+@keyframes scale {
+  50% {
+    transform: scale(0.9);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes spin {
+  0% {
+    --rotate: 0deg;
+  }
+  100% {
+    --rotate: 360deg;
+  }
 }
