@@ -91,8 +91,8 @@ body {
   animation: scale 3s linear 0s infinite alternate;
   border-radius: 100px;
   background: #191c29;
-  width: 96px;
-  height: 96px;
+  width: 144px;
+  height: 144px;
   position: relative;
   border-radius: 600px;
   justify-content: center;
@@ -165,4 +165,21 @@ body {
   100% {
     --rotate: 360deg;
   }
+}
+
+/* 开始按钮 */
+.start-button {
+  background: transparent;
+  transition: all 0.2 ease-in-out;
+  color: #fff;
+  font-size: 2em;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  width: 3.6em;
+  height: 1.8em;
+  margin-bottom: 2em;
+}
+.start-button:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 1);
 }

@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect, memo } from "react";
 import usersArr from "./datas";
-import hashPosition from "./hashPosition";
 
 function shuffle(data) {
   const len = data.length;
@@ -18,11 +17,11 @@ export function LuckyFlower(props) {
   const data = usersArr.slice();
   const [lucky, setLucky] = useState({});
 
-  const TOTAL = Math.floor(Math.random() * 10) + 16;
+  const TOTAL = Math.floor(Math.random() * 10) + 20;
   const DELAY = 150;
   const [count, setCount] = useState(0);
   const [timer, setTimer] = useState(null);
-  const updater = (count) => count - 1;
+  const updater = (count) => (count <= 0 ? 0 : count - 1);
   if (count === 0) {
     timer && clearInterval(timer);
     timer && setTimer(null);
@@ -91,20 +90,36 @@ export function LuckyFlower(props) {
             花落谁家
           </h3>
 
-          <button onClick={onFindLucky}>{count === 0 ? "开始" : count}</button>
-          <button onClick={() => setOpen(false)}>x</button>
+          <button
+            style={{
+              background: "transparent",
+              border: "none",
+              cursor: "pointer",
+              color: "#fff",
+              fontSize: "2em",
+              transform: "rotate(45deg)",
+              marginRight: "8px"
+            }}
+            onClick={() => setOpen(false)}
+          >
+            +
+          </button>
         </header>
         <section
           style={{
             display: "flex",
+            flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            flexWrap: "wrap",
             gap: "48px",
             // outline: "1px solid red",
             height: "80vh"
           }}
         >
+          <button className="start-button" onClick={onFindLucky}>
+            {count === 0 ? "开始" : count}
+          </button>
+
           <div
             style={{
               // width: "80%",
@@ -137,6 +152,12 @@ export function LuckyFlower(props) {
                 </div>
               );
             })}
+          </div>
+          <div style={{ color: "#fff", fontSize: "3em", height: "1em" }}>
+            <span role="img" aria-label="flower">
+              🌸
+            </span>{" "}
+            {lucky.user && `${lucky.nickname} (${lucky.user})`}
           </div>
         </section>
       </dialog>
