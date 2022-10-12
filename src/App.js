@@ -392,8 +392,17 @@ function HelpTips(props) {
           width={781}
           height={419}
           alt=""
-          style={{ marginBottom: -12 }}
+          style={{ marginBottom: 4 }}
         />
+        <h4 style={{ margin: "0 0 8px 0" }}>了解更多</h4>
+        <a
+          href="https://radial-gold-06c.notion.site/f699c2397ad34fbab49902425be60bf0"
+          target="_blank"
+          rel="noreferrer"
+          style={{ fontSize: 12, textDecoration: "none", color: "#296bef" }}
+        >
+          《会议助手》设计与实现
+        </a>
       </dialog>
     </div>
   );

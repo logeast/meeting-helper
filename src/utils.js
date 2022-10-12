@@ -149,7 +149,7 @@ export const categoreLinks = (url) => {
     ["tapd", "TAPD"],
     ["web/spear/", "重构稿"],
     ["onedesign", "One Design"],
-    ["web/odc", "ODC"]
+    ["web/odc", "One Design"]
   ]);
   let result = "链接";
   linkMap.forEach((value, key) => {
