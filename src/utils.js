@@ -120,6 +120,7 @@ export const addTag = (arr = []) => {
     const itemObj = {
       title: "",
       url: "",
+      urls: [],
       items: []
     };
     if (Array.isArray(item)) {
@@ -130,6 +131,7 @@ export const addTag = (arr = []) => {
             .trim();
         } else if (isUrl(subItem.trim())) {
           itemObj.url = subItem;
+          itemObj.urls.push(subItem);
         } else if (isListItem(subItem).flag) {
           itemObj.items.push(
             subItem.replace(isListItem(subItem).targetItem, "").trim()
@@ -148,6 +150,7 @@ export const categoreLinks = (url) => {
     ["figma", "Figma"],
     ["tapd", "TAPD"],
     ["web/spear/", "重构稿"],
+    ["cccc/", "重构稿"],
     ["onedesign", "One Design"],
     ["web/odc", "One Design"]
   ]);

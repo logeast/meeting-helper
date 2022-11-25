@@ -122,7 +122,16 @@ function FormatAreaInner(props) {
               <li key={index}>
                 <p className="paragraph text-align-type-left pap-line-1.3 pap-line-rule-auto pap-spacing-before-3pt pap-spacing-after-3pt pap-left-indent-2em pap-hanging-indent-1.6em">
                   <span>{item.title}</span>{" "}
-                  {item.url && <a href={item.url}>{categoreLinks(item.url)}</a>}
+                  {/* {item.url && <a href={item.url}>{categoreLinks(item.url)}</a>} */}
+                  <div style={{ display: "inline-flex", gap: 4 }}>
+                    {" "}
+                    {item.urls.length > 0 &&
+                      item.urls.map((url, index) => (
+                        <a href={url} key={index}>
+                          {categoreLinks(url)}
+                        </a>
+                      ))}
+                  </div>
                 </p>
               </li>
               <ul style={{ paddingLeft: 48 }}>
