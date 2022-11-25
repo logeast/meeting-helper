@@ -151,6 +151,7 @@ export const categoreLinks = (url) => {
     ["tapd", "TAPD"],
     ["web/spear/", "重构稿"],
     ["cccc/", "重构稿"],
+    ["doc.weixin.qq.com", "腾讯文档"],
     ["onedesign", "One Design"],
     ["web/odc", "One Design"]
   ]);
