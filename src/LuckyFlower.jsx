@@ -36,9 +36,13 @@ export function LuckyFlower(props) {
   };
 
   useEffect(() => {
+    if (window.location.hash === "#flower") {
+      setOpen(true);
+    }
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
         setOpen(false);
+        window.location.hash = "";
       }
     });
   }, []);
@@ -53,7 +57,10 @@ export function LuckyFlower(props) {
           color: "#296bef",
           marginRight: "8px"
         }}
-        onClick={() => setOpen(true)}
+        onClick={() => {
+          setOpen(true);
+          window.location.hash = "#flower";
+        }}
       >
         <span role="img" aria-label="flower">
           🌸
@@ -100,7 +107,10 @@ export function LuckyFlower(props) {
               transform: "rotate(45deg)",
               marginRight: "8px"
             }}
-            onClick={() => setOpen(false)}
+            onClick={() => {
+              setOpen(false);
+              window.location.hash = "";
+            }}
           >
             +
           </button>
@@ -140,7 +150,7 @@ export function LuckyFlower(props) {
                   }`}
                 >
                   <img
-                    src={`https://r.hrc.oa.com/photo/500/${item.user}.png`}
+                    src={`https://passport.woa.com/login-avatar?user=${item.user}`}
                     alt={item.nickname}
                     title={item.nickname}
                     style={{
