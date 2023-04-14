@@ -338,6 +338,23 @@ function Header() {
             cursor: "pointer",
             color: "#296bef"
           }}
+        >
+          <a
+            style={{ textDecoration: "none", color: "inherit" }}
+            target="_blank"
+            rel="noreferrer"
+            href="https://ui.tad.woa.com/ai"
+          >
+            AI 助手
+          </a>
+        </button>
+        <button
+          style={{
+            background: "transparent",
+            border: "none",
+            cursor: "pointer",
+            color: "#296bef"
+          }}
           onClick={onClear}
         >
           一键清空
