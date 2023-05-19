@@ -4,7 +4,7 @@ const usersArr = [
   ["arryliu", "超哥", "#EABFFF"],
   ["yanqinghu", "庆", "#A5B4FC"],
   // ["dingdingma", "丁丁", "#FFC880"],
-  // ["quinceywang", "小希", "#FFBDAE"],
+  ["quinceywang", "小希", "#FFBDAE"],
   ["yilanghe", "依朗", "#FFBDAE"],
   // ["haiyingzhao", "海莹", "#B1D0FF"],
   ["dovechen", "鸽子哥", "#FFEA79"],
