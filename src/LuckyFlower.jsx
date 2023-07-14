@@ -38,13 +38,23 @@ export function LuckyFlower(props) {
   useEffect(() => {
     if (window.location.hash === "#flower") {
       setOpen(true);
+      document.title = "花落谁家";
     }
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
         setOpen(false);
         window.location.hash = "";
+        document.title = "会议助手";
       }
     });
+  }, []);
+
+  useEffect(() => {
+    if (window.location.hash === "#flower") {
+      document.title = "花落谁家";
+    } else {
+      document.title = "会议助手";
+    }
   }, []);
 
   return (
@@ -60,6 +70,7 @@ export function LuckyFlower(props) {
         onClick={() => {
           setOpen(true);
           window.location.hash = "#flower";
+          document.title = "花落谁家";
         }}
       >
         <span role="img" aria-label="flower">
@@ -110,6 +121,7 @@ export function LuckyFlower(props) {
             onClick={() => {
               setOpen(false);
               window.location.hash = "";
+              document.title = "会议助手";
             }}
           >
             +

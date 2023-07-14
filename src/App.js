@@ -60,8 +60,34 @@ const reducer = (state, action) => {
 // 输入单元
 function InputArea(props) {
   const { user, nickname, color, value, onChange, onBlur } = props;
+  const editableRef = useRef(null);
+
+  function handlePaste(event) {
+    console.log("event", event);
+    const items = (event.clipboardData || event.originalEvent.clipboardData)
+      .items;
+    console.log("event1", items);
+    for (let i = 0; i < items.length; i++) {
+      const item = items[i];
+      if (item.type.indexOf("image") !== -1) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          document.execCommand("insertImage", false, event.target.result);
+        };
+        reader.readAsDataURL(item.getAsFile());
+      } else if (item.type.indexOf("text") !== -1) {
+        item.getAsString((text) => {
+          document.execCommand("insertHTML", false, text);
+        });
+      }
+    }
+    event.preventDefault();
+  }
+
   return (
     <div
+      ref={editableRef}
+      onPaste={handlePaste}
       className="input-area"
       style={{
         display: "flex",
@@ -70,6 +96,7 @@ function InputArea(props) {
       }}
     >
       <textarea
+        // contentEditable
         placeholder={`请粘贴会议纪要`}
         style={{
           width: "100%",
@@ -77,6 +104,7 @@ function InputArea(props) {
           outline: "none",
           border: "none",
           resize: "none",
+          overflow: "auto",
           padding: 16,
           background: "transparent"
         }}
