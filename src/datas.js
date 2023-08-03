@@ -3,7 +3,7 @@ const usersArr = [
   ["chihyunli", "知芸", "#93E396"],
   ["arryliu", "超哥", "#EABFFF"],
   ["yanqinghu", "庆", "#A5B4FC"],
-  // ["dingdingma", "丁丁", "#FFC880"],
+  ["donringyang", "冬琳", "#FFC880"],
   ["quinceywang", "小希", "#FFBDAE"],
   ["yilanghe", "依朗", "#B1D0FF"],
   // ["haiyingzhao", "海莹", "#B1D0FF"],
