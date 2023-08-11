@@ -149,7 +149,7 @@ export function LuckyFlower(props) {
               display: "grid",
               alignItems: "center",
               justifyContent: "center",
-              gridTemplateColumns: "repeat(3, 1fr)",
+              gridTemplateColumns: "repeat(4, 1fr)",
               gap: 48
             }}
           >
