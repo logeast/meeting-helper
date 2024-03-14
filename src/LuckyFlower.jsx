@@ -65,7 +65,7 @@ export function LuckyFlower(props) {
           border: "none",
           cursor: "pointer",
           color: "#296bef",
-          marginRight: "8px"
+          marginRight: "8px",
         }}
         onClick={() => {
           setOpen(true);
@@ -91,14 +91,14 @@ export function LuckyFlower(props) {
           bottom: 0,
           zIndex: 1000,
           width: "100%",
-          height: "100%"
+          height: "100%",
         }}
       >
         <header
           style={{
             display: "flex",
             alignItems: "center",
-            justifyContent: "space-between"
+            justifyContent: "space-between",
           }}
         >
           <h3 style={{ margin: "16px", color: "#fff" }}>
@@ -116,7 +116,7 @@ export function LuckyFlower(props) {
               color: "#fff",
               fontSize: "2em",
               transform: "rotate(45deg)",
-              marginRight: "8px"
+              marginRight: "8px",
             }}
             onClick={() => {
               setOpen(false);
@@ -135,9 +135,23 @@ export function LuckyFlower(props) {
             alignItems: "center",
             gap: "48px",
             // outline: "1px solid red",
-            height: "80vh"
+            height: "80vh",
           }}
         >
+          <a
+            href="https://tad.woa.com/hua"
+            target="_blank"
+            style={{
+              padding: "1rem 3rem",
+              fontSize: "3rem",
+              fontWeight: 600,
+              color: "white",
+              textDecoration: "none",
+              border: "0.5px dashed rgba(255,255,255,0.5)",
+            }}
+          >
+            新版上线啦，去使用↗️
+          </a>
           <button className="start-button" onClick={onFindLucky}>
             {count === 0 ? "开始" : count}
           </button>
@@ -150,7 +164,7 @@ export function LuckyFlower(props) {
               alignItems: "center",
               justifyContent: "center",
               gridTemplateColumns: "repeat(4, 1fr)",
-              gap: 48
+              gap: 48,
             }}
           >
             {data.map((item, index) => {
@@ -168,7 +182,7 @@ export function LuckyFlower(props) {
                     style={{
                       width: "100%",
                       height: "100%",
-                      borderRadius: "100%"
+                      borderRadius: "100%",
                     }}
                   />
                 </div>
